@@ -1,26 +1,83 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './сomponents/header/header.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrayList: []
+    };
+  }
+
+  componentDidMount() {
+    this.apiDataList();
+    
+  }
+
+  componentWillUnmount() {
+  }
+
+  async apiDataList() {
+    const response = await fetch(`https://test.megapolis-it.ru/api/list`)
+    const json = await response.json();
+
+    this.setState({ arrayList: json });
+    console.log(json);
+  }
+
+  async apiSetNewtasks(textTask){
+
+    const response = await fetch('https://test.megapolis-it.ru/api/list', {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        title: textTask
+      })
+      
+    });
+    const json = await response.json();
+    
+  }
+
+  async editingTask(id){
+
+    const response = await fetch(`https://test.megapolis-it.ru/api/list/${id}`, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        title: "Редактирование 144 id"
+      })
+      
+    });
+    const json = await response.json(); 
+
+  }
+
+  async delTask(id){
+
+    const response = await fetch(`https://test.megapolis-it.ru/api/list/${id}`, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      method: 'DELETE'
+      
+      
+    });
+    const json = await response.json(); 
+
+  }
+
+  render() {
+    return (
+      <Header />
+    );
+  }
 }
 
 export default App;
