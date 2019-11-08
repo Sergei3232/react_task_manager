@@ -8,7 +8,7 @@ function tableList(params) {
                 {params.id}
             </td>
             <td>
-                {params.text}
+                {params.title}
             </td>
         </tr>
     )
@@ -16,6 +16,7 @@ function tableList(params) {
 
 function Main(props) {
 
+    const arrayTask = props.loading ? [] : props.arrayList;
     
     return (
         <main>
@@ -23,12 +24,13 @@ function Main(props) {
                 <div className='main__box-list'>
                     <table className='main__wraper-table'>
                         <tr className='main__header-cow'>
-                            <td>"ID"</td>
-                            <td>"TASK"</td>
+                            <td>ID</td>
+                            <td>TASK</td>
                         </tr>
-                        {
-                            tableList({id: 10,text: "Text"})
-                            }
+                        {arrayTask.map((e)=>{
+                            return tableList(e);
+                        }    
+                        )}
 
                     </table>
                 </div>

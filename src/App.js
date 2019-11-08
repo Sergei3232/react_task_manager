@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrayList: []
+      arrayList: [],
+      loading: false
     };
   }
 
@@ -20,11 +21,12 @@ class App extends React.Component {
   }
 
   async apiGetTasksList() {
+    this.setState({ loading: false });
     const response = await fetch(`https://test.megapolis-it.ru/api/list`)
     const json = await response.json();
 
     this.setState({ arrayList: json });
-
+    this.setState({ loading: true });
   }
 
   async createNewtasks(textTask){
@@ -75,7 +77,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Main arrayTask={this.state.arrayList}/>
+      <Main arrayTask={this.state.arrayList} loading = {this.state.loading}/>
     );
   }
 }
