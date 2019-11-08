@@ -5,12 +5,10 @@ function tableList(params) {
     return (
         <tr className='main__header-cow'>
             <td>
-                Бла бла
-                {/* {params.id} */}
+                {params.id}
             </td>
             <td>
-                Бла бла
-                {/* {params.text} */}
+                {params.text}
             </td>
         </tr>
     )
@@ -29,10 +27,8 @@ function Main(props) {
                             <td>"TASK"</td>
                         </tr>
                         {
-                            props.arrayTask.map((elem) => {
-                                tableList(elem);
+                            tableList({id: 10,text: "Text"})
                             }
-                            )}
 
                     </table>
                 </div>
