@@ -19,7 +19,7 @@ class App extends React.Component {
   componentWillUnmount() {
   }
 
-  async apiDataList() {
+  async apiGetTasksList() {
     const response = await fetch(`https://test.megapolis-it.ru/api/list`)
     const json = await response.json();
 
@@ -27,7 +27,7 @@ class App extends React.Component {
     console.log(json);
   }
 
-  async apiSetNewtasks(textTask){
+  async createNewtasks(textTask){
 
     const response = await fetch('https://test.megapolis-it.ru/api/list', {
       headers: {
