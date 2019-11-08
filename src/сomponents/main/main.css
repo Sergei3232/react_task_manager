@@ -1,0 +1,58 @@
+.main{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    background-color: azure;
+}
+
+.main__box-list{
+    width: 60%;
+    height: 100px;  
+    margin: 15px 0px 0px;
+}
+
+.main__box-bottun{
+    width: 5%;
+    height: 100px;
+    margin: 15px 0px 0px;    
+}
+
+.main__wraper-button{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.main__button-refresh{
+    width: 100%;
+    height: 40px;
+}
+
+.main__wraper-table{
+    width: 100%;
+    height: 40px;    
+}
+
+.main__header-cow{
+    width: 100%;
+    height: 30px;
+    background-color: #77b899;
+        
+}
+
+.main__header-id{
+    width: 20%;
+    height: 30px;
+}
+
+.main__header-task{
+    width: 80%;
+    height: 30px;
+}
+
+td{
+    border: solid;
+    text-align: center;
+}

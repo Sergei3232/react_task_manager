@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './сomponents/header/header.js'
+import Main from './сomponents/main/main';
 
 class App extends React.Component {
 
@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.apiDataList();
+    this.apiGetTasksList();
     
   }
 
@@ -24,7 +24,7 @@ class App extends React.Component {
     const json = await response.json();
 
     this.setState({ arrayList: json });
-    console.log(json);
+
   }
 
   async createNewtasks(textTask){
@@ -75,7 +75,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Header />
+      <Main arrayTask={this.state.arrayList}/>
     );
   }
 }
