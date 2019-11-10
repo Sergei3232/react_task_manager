@@ -7,30 +7,29 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrayList: [],
-      loading: false
+      arrayList: []
+
     };
   }
 
   componentDidMount() {
     this.apiGetTasksList();
-    
+
   }
 
   componentWillUnmount() {
   }
 
   async apiGetTasksList() {
-    this.setState({ loading: false });
+    // console.log('Обновление');
     const response = await fetch(`https://test.megapolis-it.ru/api/list`)
     const json = await response.json();
+    this.setState({ arrayList: json.data });
 
-    this.setState({ arrayList: json });
-    this.setState({ loading: true });
   }
 
   async createNewtasks(textTask){
-
+    // console.log('Создание нового элемента');
     const response = await fetch('https://test.megapolis-it.ru/api/list', {
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
@@ -72,12 +71,17 @@ class App extends React.Component {
       
     });
     const json = await response.json(); 
-
+    this.apiGetTasksList();
   }
 
   render() {
     return (
-      <Main arrayTask={this.state.arrayList} loading = {this.state.loading}/>
+      <Main 
+        arrayTask={this.state.arrayList} 
+        refreshBottun = {this.apiGetTasksList.bind(this)} 
+        delBottun = {this.delTask.bind(this)} 
+        createNewtasks ={this.createNewtasks.bind(this)}          
+        />
     );
   }
 }
