@@ -1,17 +1,44 @@
 import React from 'react';
-import './main.css';
+import FormNewTask from './formNewTask'
+import FormEditingTask from './formEditingTask'
+import './main.scss';
 
 let idActiveTask = "";
+let textTaskEditing = "";
+
 function activeTask({ id }) {
     idActiveTask = id;
 }
 
+function textEditingTask(param){
+    textTaskEditing = param;
+}
+
 function Main(props) {
 
-    const arrayTask = props.arrayTask;
-    const refreshBottun = props.refreshBottun;
-    const delBottun = props.delBottun;
-    const createNewtasks = props.createNewtasks;
+    const arrayTask       = props.arrayTask;
+    const refreshBottun   = props.refreshBottun;
+    const delBottun       = props.delBottun;
+    const showFormNewTask = props.showFormNewTask;
+    const formNewTaskOpen = props.formNewTaskOpen;
+
+    const formEditingTaskOpen = props.formEditingTaskOpen;
+    const showFormEditingTask = props.showFormEditingTask;
+    const editingTask         = props.editingTask;
+    
+    // console.log(props.createNewtasks)
+    
+    let formNewTask = ""
+    let formeditingTask = ""
+
+    if (formNewTaskOpen) {
+        formNewTask = <FormNewTask createNewtasks = {props.createNewtasks}/>;
+    } 
+
+    if (formEditingTaskOpen || textTaskEditing != "") {
+        formeditingTask = <FormEditingTask textTaskEditing = {textTaskEditing} idActiveTask = {idActiveTask} editingTask = {editingTask}/>;
+    } 
+
     return (
         <main>
             <div className='main'>
@@ -36,11 +63,16 @@ function Main(props) {
                                             
                                         </td>
                                         <td>
-                                            <button className='main__button-editing'>Редактировать</button>
+                                            <button className='main__button-editing' 
+                                                onClick ={()=>{ 
+                                                    textEditingTask(item.title);
+                                                    showFormEditingTask();
+                                                }}
+                                                >Редактировать</button>
                                             <button className='main__button-dell' 
                                                 onClick={() => { 
                                                     activeTask({ id: item.id });
-                                                    delBottun(idActiveTask) }} >Удалить</button>
+                                                    delBottun(idActiveTask); }} >Удалить</button>
                                         </td>
                                     </tr>
                                 )
@@ -56,15 +88,17 @@ function Main(props) {
                     <div className='main__box-bottun'>
                         <div className='main__wraper-button'>
                             <button onClick={refreshBottun} className='main__button-refresh'>Обновить</button>
+                            
                         </div>
                     </div>
                 </div>
                 <div className='main__wraper-bottun'>
-                    <form>
-        
-                        <button onClick={() => { createNewtasks(`Новый заказ новый заказ ${new Date()}`) }}>Создать</button>
-                    </form>
+                    
+                        <button onSubmit={(e) => {e.preventDefault()}} onClick={() => {showFormNewTask()}}>Создать</button>
+                    
                 </div>
+                {formNewTask}
+                {formeditingTask}
             </div>
 
         </main>
