@@ -1,0 +1,27 @@
+.new-application{
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    background-color: rgb(208, 245, 245);
+    bottom: 50%;
+    right: 50%;
+    border: inset 2px #333333;
+
+    &__title{
+        text-align: center;
+        font-size: 15px;
+    }    
+}
+
+.form{
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    &__description{
+        width: 90%;
+        height: 200px;
+
+    }
+
+}

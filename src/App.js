@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import Main from './сomponents/main/main';
-import FormNewTask from './сomponents/main/formNewTask';
-import FormEditingTask from './сomponents/main/formEditingTask';
+
 
 class App extends React.Component {
 
@@ -56,7 +55,6 @@ class App extends React.Component {
   }
 
   async editingTask(param) {
-    // console.log("Редактирование");
     const response = await fetch(`https://test.megapolis-it.ru/api/list/${param.id}`, {
       headers: {
         'Content-Type': 'application/json; charset=utf-8'

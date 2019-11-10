@@ -26,8 +26,6 @@ function Main(props) {
     const showFormEditingTask = props.showFormEditingTask;
     const editingTask         = props.editingTask;
     
-    // console.log(props.createNewtasks)
-    
     let formNewTask = ""
     let formeditingTask = ""
 
@@ -36,7 +34,12 @@ function Main(props) {
     } 
 
     if (formEditingTaskOpen || textTaskEditing != "") {
-        formeditingTask = <FormEditingTask textTaskEditing = {textTaskEditing} idActiveTask = {idActiveTask} editingTask = {editingTask}/>;
+        formeditingTask = <FormEditingTask 
+        textTaskEditing = {textTaskEditing} 
+        idActiveTask    = {idActiveTask} 
+        editingTask     = {editingTask} 
+        conditionForm   = {showFormEditingTask}
+        formNewTaskOpen = {formNewTaskOpen} />;
     } 
 
     return (
@@ -87,16 +90,16 @@ function Main(props) {
                     </div>
                     <div className='main__box-bottun'>
                         <div className='main__wraper-button'>
-                            <button onClick={refreshBottun} className='main__button-refresh'>Обновить</button>
-                            
+                            <button className='main__button-refresh' onClick={refreshBottun} >Обновить</button>
+                            <button className='main__button-refresh' onSubmit={(e) => {e.preventDefault()}} onClick={() => {showFormNewTask()}}>Создать</button>
                         </div>
                     </div>
                 </div>
-                <div className='main__wraper-bottun'>
+                {/* <div className='main__wraper-bottun'>
                     
                         <button onSubmit={(e) => {e.preventDefault()}} onClick={() => {showFormNewTask()}}>Создать</button>
                     
-                </div>
+                </div> */}
                 {formNewTask}
                 {formeditingTask}
             </div>

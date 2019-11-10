@@ -1,36 +1,53 @@
 import React from 'react';
+import './formEditingTask.scss'
 
-function FormEditingTask (props) {
+function FormEditingTask(props) {
     const textTaskEditing = props.textTaskEditing;
     const idActiveTask = props.idActiveTask;
     const editingTask = props.editingTask;
+    const showFormEditingTask = props.showFormEditingTask;
 
     return (
         <div className="new-application">
             <div className="new-application__title">
                 Editing Task
             </div>
-            
+
             <div className="new-application__form">
-                <form className="form">                    
-                    <textarea 
-                        type="tetx" 
-                        className="form__description" 
-                        name="description"
-                    >{textTaskEditing}
-                    </textarea>
-                    <button 
-                        type="submit" 
-                        className="form__sent-application"
-                        onClick={() => {
-                            editingTask({
-                                id: idActiveTask,
-                                text: document.querySelector('.form__description').value
+
+                <form className="form">
+                    <div>
+                        <textarea
+                            type="tetx"
+                            className="form__description"
+                            name="description"
+                        >{textTaskEditing}
+
+                        </textarea>
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            className="form__sent-application"
+                            onClick={() => {
+
+                                editingTask({
+                                    id: idActiveTask,
+                                    text: document.querySelector('.form__description').value
                                 });
-                        }}
-                    >
-                        Сохранить
+                            }}
+                        >
+                            Сохранить
                     </button>
+                        <button
+                            className="form__close"
+                            onClick={(e) => {
+                                showFormEditingTask()
+                            }}
+                        >
+                            Отмена
+                    </button>
+                    </div>
                 </form>
             </div>
         </div>
