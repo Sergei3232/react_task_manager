@@ -19,8 +19,10 @@ function Main(props) {
     const arrayTask       = props.arrayTask;
     const refreshBottun   = props.refreshBottun;
     const delBottun       = props.delBottun;
+
     const showFormNewTask = props.showFormNewTask;
     const formNewTaskOpen = props.formNewTaskOpen;
+    const createNewtasks  = props.createNewtasks;
 
     const formEditingTaskOpen = props.formEditingTaskOpen;
     const showFormEditingTask = props.showFormEditingTask;
@@ -30,15 +32,17 @@ function Main(props) {
     let formeditingTask = ""
 
     if (formNewTaskOpen) {
-        formNewTask = <FormNewTask createNewtasks = {props.createNewtasks}/>;
+        formNewTask = <FormNewTask createNewtasks = {createNewtasks} showFormNewTask = {showFormNewTask}/>;
     } 
+    console.log(formEditingTaskOpen);
+    console.log(textTaskEditing);
 
-    if (formEditingTaskOpen || textTaskEditing != "") {
+    if (formEditingTaskOpen && textTaskEditing != "") {
         formeditingTask = <FormEditingTask 
         textTaskEditing = {textTaskEditing} 
         idActiveTask    = {idActiveTask} 
         editingTask     = {editingTask} 
-        conditionForm   = {showFormEditingTask}
+        showFormEditingTask   = {showFormEditingTask}
         formNewTaskOpen = {formNewTaskOpen} />;
     } 
 
@@ -91,15 +95,11 @@ function Main(props) {
                     <div className='main__box-bottun'>
                         <div className='main__wraper-button'>
                             <button className='main__button-refresh' onClick={refreshBottun} >Обновить</button>
-                            <button className='main__button-refresh' onSubmit={(e) => {e.preventDefault()}} onClick={() => {showFormNewTask()}}>Создать</button>
+                            <button className='main__button-refresh' onClick={() => {showFormNewTask()}}>Создать</button>
                         </div>
                     </div>
                 </div>
-                {/* <div className='main__wraper-bottun'>
-                    
-                        <button onSubmit={(e) => {e.preventDefault()}} onClick={() => {showFormNewTask()}}>Создать</button>
-                    
-                </div> */}
+                
                 {formNewTask}
                 {formeditingTask}
             </div>

@@ -19,7 +19,7 @@ class App extends React.Component {
   }
   
   showFormEditingTask(){
-    this.setState({ formEditingTask: !this.state.formEditingTask });
+    this.setState({ formEditingTaskOpen: !this.state.formEditingTaskOpen });
   }
 
   componentDidMount() {
@@ -51,7 +51,7 @@ class App extends React.Component {
 
     });
     const json = await response.json();
-
+    this.apiGetTasksList();
   }
 
   async editingTask(param) {
@@ -66,7 +66,7 @@ class App extends React.Component {
 
     });
     const json = await response.json();
-
+    this.apiGetTasksList();
   }
 
   async delTask(id) {
@@ -94,7 +94,7 @@ class App extends React.Component {
           formNewTaskOpen = {this.state.formNewTaskOpen}
           showFormNewTask = {this.showFormNewTask.bind(this)}
           showFormEditingTask = {this.showFormEditingTask.bind(this)}
-          formEditingTaskOpen = {this.formEditingTaskOpen} 
+          formEditingTaskOpen = {this.state.formEditingTaskOpen} 
           editingTask = {this.editingTask.bind(this)}  
         />
         )  

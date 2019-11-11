@@ -1,32 +1,41 @@
 import React from 'react';
 
-function FormNewTask (props) {
+function FormNewTask(props) {
     const createNewtasks = props.createNewtasks;
-
+    const showFormNewTask = props.showFormNewTask;
     return (
         <div className="new-application">
             <div className="new-application__title">
                 New Task
             </div>
-            
+
             <div className="new-application__form">
-                <form className="form">                    
-                    <textarea 
-                        type="tetx" 
-                        className="form__description" 
+                <div className="form">
+                    <textarea
+                        type="tetx"
+                        className="form__description"
                         name="description"
                     >
                     </textarea>
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         className="form__sent-application"
                         onClick={() => {
                             createNewtasks(document.querySelector('.form__description').value);
+                            showFormNewTask();
                         }}
                     >
                         Сохранить
                     </button>
-                </form>
+                    <button
+                        className="form__close"
+                        onClick={(e) => {
+                            showFormNewTask();
+                        }}
+                    >
+                        Отмена
+                    </button>
+                </div>
             </div>
         </div>
     )

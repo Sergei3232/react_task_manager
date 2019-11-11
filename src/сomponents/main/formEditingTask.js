@@ -15,7 +15,7 @@ function FormEditingTask(props) {
 
             <div className="new-application__form">
 
-                <form className="form">
+                <div className="form">
                     <div>
                         <textarea
                             type="tetx"
@@ -30,15 +30,16 @@ function FormEditingTask(props) {
                             type="submit"
                             className="form__sent-application"
                             onClick={() => {
-
+                                showFormEditingTask();
                                 editingTask({
                                     id: idActiveTask,
                                     text: document.querySelector('.form__description').value
                                 });
+
                             }}
                         >
                             Сохранить
-                    </button>
+                        </button>
                         <button
                             className="form__close"
                             onClick={(e) => {
@@ -46,9 +47,9 @@ function FormEditingTask(props) {
                             }}
                         >
                             Отмена
-                    </button>
+                        </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
